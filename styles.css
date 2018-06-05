@@ -9,7 +9,7 @@ body {
 
 #card-container {
   margin: 25px auto;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 #card-container:hover #flipper{
@@ -17,10 +17,10 @@ body {
   perspective: 1000px;
 }
 
-#card-container, #front, #back {
+#card-container, .face {
   width: 600px;
   height: 500px;
-  background: #FFF;
+  background: #DDD;
 }
 
 #flipper {
@@ -29,9 +29,10 @@ body {
   transform-style: preserve-3d;
 }
 
-#front, #back {
+.face {
   position: absolute;
   backface-visibility: hidden;
+  border-radius: 10px;
   top: 0;
   left: 0;
   font-size: 2rem;
@@ -44,7 +45,7 @@ body {
 }
 
 #back {
-  background: blue;
+  background: #AAA;
   transform: rotateY(180deg);
 }
 
@@ -63,10 +64,10 @@ body {
   height: 150px;
   border: 5px #000 solid;
   border-radius: 5px;
-  background: #FFF;
+  background: #DDD;
   transition: 0.5s;
 }
 
 .preview:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
