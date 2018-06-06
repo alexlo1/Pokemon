@@ -139,19 +139,19 @@ function shiftLeft() {
   n = n > 1 ? n - 1 : MAX;
   updateCard(n);
   updateBanner(n);
-  preload(n, 5);
+  preload(n, 10);
 }
 
 function shiftRight() {
   n = n < MAX ? n + 1 : 1;
   updateCard(n);
   updateBanner(n);
-  preload(n, 5);
+  preload(n, 10);
 }
 
 let n = 1;
 getAllRequests(n);
-preload(n, 5);
+preload(n, 10);
 
 document.onkeydown = (e) => {
   switch (e.keyCode) {
