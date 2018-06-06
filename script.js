@@ -72,7 +72,7 @@ function updateCard(n) {
   }
 }
 
-function setBannerImage(request, preview) {
+function createBannerImage(request, preview) {
   const data = JSON.parse(request.response);
   if(request.status >= 200 && request.status < 400) {
     const preview_img = document.createElement('img');
@@ -82,30 +82,53 @@ function setBannerImage(request, preview) {
   }
 }
 
-function getAllRequests(id) {
-  for(let i = id-2; i <= id+2; i++) {
-    let index = i > 0 ? i : i + MAX;
+function clearBannerImage(i) {
+  document.getElementById(`preview-${i}`).innerHTML = "";
+}
+
+function updateBanner(n) {
+  for(let i = n-2; i <= n+2; i++) {
+    let index = i > 0 ? (i <= MAX ? i : i - MAX) : i + MAX;
+    if(requestData[index] == null) {
+      let request = new XMLHttpRequest();
+      request.open('GET', `https://pokeapi.co/api/v2/pokemon/${index}`, true);
+      request.onload = () => {
+        requestData[n] = request;
+        clearBannerImage(i-n);
+        createBannerImage(request, `preview-${i-n}`);
+      };
+    } else {
+      clearBannerImage(i-n);
+      createBannerImage(requestData[index], `preview-${i-n}`);
+    }
+  }
+}
+
+function getAllRequests(n) {
+  for(let i = n-2; i <= n+2; i++) {
+    let index = i > 0 ? (i <= MAX ? i : i - MAX) : i + MAX;
     if(requestData[index] == null) {
       let request = new XMLHttpRequest();
       request.open('GET', `https://pokeapi.co/api/v2/pokemon/${index}`, true);
       request.onload = () => {
         requestData[index] = request;
-        if(i == id) createCard(request);
-        setBannerImage(request, `preview-${i-id}`);
+        if(i == n) createCard(request);
+        createBannerImage(request, `preview-${i-n}`);
       };
       request.send();
     } else {
       if(i == id) createCard(requestData[index]);
-      setBannerImage(requestData[index], `preview-${i-id}`);
+      createBannerImage(requestData[index], `preview-${i-n}`);
     }
   }
 }
 
-function preload() {
-  for(let i = 1; i <= MAX; i++) {
-    if(requestData[i] == null) {
+function preload(n, extra) {
+  for(let i = n-extra; i <= n+extra; i++) {
+    let index = i > 0 ? (i <= MAX ? i : i - MAX) : i + MAX;
+    if(requestData[index] == null) {
       let request = new XMLHttpRequest();
-      request.open('GET', `https://pokeapi.co/api/v2/pokemon/${i}`, true);
+      request.open('GET', `https://pokeapi.co/api/v2/pokemon/${index}`, true);
       request.onload = () => requestData[i] = request;
       request.send();
     }
@@ -115,16 +138,20 @@ function preload() {
 function shiftLeft() {
   n = n > 1 ? n - 1 : MAX;
   updateCard(n);
+  updateBanner(n);
+  preload(n, 5);
 }
 
 function shiftRight() {
   n = n < MAX ? n + 1 : 1;
   updateCard(n);
+  updateBanner(n);
+  preload(n, 5);
 }
 
 let n = 1;
 getAllRequests(n);
-//preload();
+preload(n, 5);
 
 document.onkeydown = (e) => {
   switch (e.keyCode) {
