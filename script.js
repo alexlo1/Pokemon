@@ -1,4 +1,5 @@
-const MAX = 151;
+const MAX = 9;
+const PRE = 5;
 
 function capFirst(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -139,19 +140,19 @@ function shiftLeft() {
   n = n > 1 ? n - 1 : MAX;
   updateCard(n);
   updateBanner(n);
-  preload(n, 10);
+  preload(n, PRE);
 }
 
 function shiftRight() {
   n = n < MAX ? n + 1 : 1;
   updateCard(n);
   updateBanner(n);
-  preload(n, 10);
+  preload(n, PRE);
 }
 
 let n = 1;
 getAllRequests(n);
-preload(n, 10);
+preload(n, PRE);
 
 document.onkeydown = (e) => {
   switch (e.keyCode) {
