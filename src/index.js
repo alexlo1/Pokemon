@@ -16,3 +16,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('root')
   );
 });
+
+const config = {
+  rootMargin: '0 0 400px 0',
+  threshold: 0
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  let lazyImageObserver = new IntersectionObserver((entries, self) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.src = entry.target.dataset.src;
+        self.unobserve(entry.target);
+      }
+    });
+  });
+
+  let lazyImages = document.querySelectorAll('[data-src]');
+  lazyImages.forEach(lazyImage => {
+    lazyImageObserver.observe(lazyImage);
+  });
+}, config);

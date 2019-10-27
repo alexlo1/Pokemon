@@ -41,7 +41,10 @@ const PokemonDetails = ({ currentPokemon, handleClose }) => {
           />
         </Grid>
         <Grid item xs={12} sm="auto" className={classes.image}>
-          <img src={Constants.spritesURL + p.sprite}/>
+          <img
+            src={Constants.spritesURL + p.sprite}
+            alt={p.name}
+          />
         </Grid>
         <Grid item xs={12} sm="auto">
           <PokemonTypeTags types={p.types}/>

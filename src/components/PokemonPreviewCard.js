@@ -42,17 +42,11 @@ const useStyles = makeStyles({
 
 const PokemonPreviewCard = ({ p, setCurrentPokemon }) => {
   const type1 = p.types.type1;
-  const type2 = p.types.type2;
+  const type2 = p.types.type2 || p.types.type1;
 
-  let background = '#ddd';
-  let lightBackground = '#fff';
-  if (type1 && type2) {
-    background = `linear-gradient(135deg, ${TypeColors[type1]._} 50%, ${TypeColors[type2]._} 50%)`;
-    lightBackground = `linear-gradient(135deg, ${TypeColors[type1].light} 50%, ${TypeColors[type2].light} 50%)`;
-  } else if (type1) {
-    background = TypeColors[type1]._;
-    lightBackground = TypeColors[type1].light;
-  }
+  const background = `linear-gradient(135deg, ${TypeColors[type1]._} 50%, ${TypeColors[type2 || type1]._} 50%)`;
+  const lightBackground = `linear-gradient(135deg, ${TypeColors[type1].light} 50%, ${TypeColors[type2 || type1].light} 50%)`;
+  
   const classes = useStyles({ background, lightBackground });
 
   return (
@@ -65,7 +59,8 @@ const PokemonPreviewCard = ({ p, setCurrentPokemon }) => {
       <div className={classes.imageContainer}>
         <img
           className={classes.image}
-          src={Constants.spritesURL + p.sprite}
+          data-src={Constants.spritesURL + p.sprite}
+          alt={p.name}
         />
       </div>
       <Typography className={classes.name}>
