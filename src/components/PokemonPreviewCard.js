@@ -37,6 +37,7 @@ const useStyles = makeStyles({
     width: 96,
     height: 96,
     margin: 'auto',
+    background: props => props.lightBackground,
   },
 });
 
@@ -53,7 +54,7 @@ const PokemonPreviewCard = ({ p, setCurrentPokemon }) => {
     <Card
       className={classes.card}
       raised
-      onClick={() => setCurrentPokemon(p.id)}
+      onClick={() => setCurrentPokemon(id => id === p.id ? 0 : p.id)}
     >
       <div className={classes.placeholder}/>
       <div className={classes.imageContainer}>

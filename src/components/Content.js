@@ -7,8 +7,8 @@ import PokemonGrid from './PokemonGrid';
 
 const useStyles = makeStyles({
   container: {
-    marginTop: 64,
-    height: 'calc(100vh - 64px)',
+    marginTop: 80,
+    height: 'calc(100vh - 80px)',
     overflow: 'hidden',
   },
 });
@@ -29,11 +29,11 @@ const Content = () => {
       <Grid container spacing={4}>
         <Grid item xs={currentPokemon ? 6 : 12}>
           <PokemonGrid
-            halfSize={currentPokemon}
+            currentPokemon={currentPokemon}
             setCurrentPokemon={setCurrentPokemon}
           />
         </Grid>
-        {currentPokemon && 
+        {currentPokemon !== 0 && 
           <Grid item xs={6}>
             <PokemonDetails
               currentPokemon={currentPokemon}

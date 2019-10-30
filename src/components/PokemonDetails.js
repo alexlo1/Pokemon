@@ -12,7 +12,7 @@ import PokedexContext from '../contexts/PokedexContext';
 
 const useStyles = makeStyles({
   details: {
-    maxHeight: 'calc(100vh - 64px)',
+    maxHeight: 'calc(100vh - 80px)',
     overflow: 'auto',
   },
   image: {
