@@ -10,7 +10,7 @@ function writeData(file, promises, processFunction, isObj = false) {
   let obj = {};
   Promise.all(promises)
     .then(result => {
-      console.log('data received');
+      console.log('data received, length:', result.length);
       result.forEach(item => {
         isObj ? addKeyValue(obj, processFunction(item)) : data.push(processFunction(item));
       });
@@ -33,33 +33,35 @@ function writeData(file, promises, processFunction, isObj = false) {
 // For getting pokemon data
 
 let promises = [];
-for (let i =101; i <= 151; i++) {
+for (let i = 101; i <= 151; i++) {
   promises.push(axios.get(`https://pokeapi.co/api/v2/pokemon/${i}/`));
 }
 
 function stripPokemonData(pokemon) {
   let data = pokemon.data;
+  delete data.base_experience;
+  delete data.forms;
   delete data.game_indices;
   delete data.held_items;
+  delete data.is_default;
   delete data.location_area_encounters;
-  delete data.moves; 
+  delete data.moves;
+  delete data.order;
+  delete data.species;
 
   data.abilities.forEach((_, index) => {
-    data.abilities[index].ability = data.abilities[index].ability.name;
+    data.abilities[index] = data.abilities[index].ability.name;
   });
-
-  data.forms.forEach((_, index) => {
-    data.forms[index] = data.forms[index].name;
-  });
-
-  data.species = data.species.name;
 
   data.sprite = data.sprites.front_default.slice(73);
   delete data.sprites;
 
+  let newStats = {};
   data.stats.forEach((_, index) => {
-    data.stats[index].stat = data.stats[index].stat.name;
+    let statName = data.stats[index].stat.name;
+    newStats[statName] = data.stats[index].base_stat;
   });
+  data.stats = newStats;
 
   let type1 = data.types.find(t => t.slot === 1);
   let type2 = data.types.find(t => t.slot === 2);

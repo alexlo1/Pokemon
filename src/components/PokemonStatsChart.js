@@ -4,12 +4,12 @@ import PokemonStatsBar from './PokemonStatsBar';
 
 const PokemonStatsChart = ({ stats, type }) => {
   let statsObject = {
-    attack: stats.find(s => s.stat === 'attack').base_stat,
-    defense: stats.find(s => s.stat === 'defense').base_stat,
-    spAttack: stats.find(s => s.stat === 'special-attack').base_stat,
-    spDefense: stats.find(s => s.stat === 'special-defense').base_stat,
-    speed: stats.find(s => s.stat === 'speed').base_stat,
-    hp: stats.find(s => s.stat === 'hp').base_stat,
+    attack: stats.attack,
+    defense: stats.defense,
+    spAttack: stats['special-attack'],
+    spDefense: stats['special-defense'],
+    speed: stats.speed,
+    hp: stats.hp,
   };
 
   return (

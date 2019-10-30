@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography';
 
 const PokemonAbilities = ({ abilities }) => {
   const abilitiesList = abilities.map(a => {
-    const words = a.ability.split('-');
+    const words = a.split('-');
     return words.map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   });
 
