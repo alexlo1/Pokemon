@@ -12,6 +12,7 @@ const useStyles = makeStyles({
 
 const PokemonTypeTags = ({ types }) => {
   const classes = useStyles();
+  
   return (
     <Grid container
       className={classes.tags}

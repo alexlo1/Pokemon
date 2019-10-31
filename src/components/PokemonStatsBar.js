@@ -19,6 +19,7 @@ const useStyles = makeStyles({
 
 const PokemonStatsBar = ({ statName, statValue, type }) => {
   const classes = useStyles({ statValue, type });
+  
   return (
     <Grid item container xs={12}>
       <Grid item xs={12} sm="auto">

@@ -17,6 +17,7 @@ const useStyles = makeStyles({
 
 const PokemonDetailsBanner = ({ name, type, onClose }) => {
   const classes = useStyles({ type });
+  
   return (
     <Grid container spacing={1} className={classes.banner} alignItems="center">
       <Grid item xs={12} sm="auto">

@@ -41,18 +41,16 @@ const PokemonTypes = ({ types }) => {
       <Grid item container xs={12} sm={6} spacing={1} alignContent="flex-start">
         {superEffective.map(([type, effect]) =>
           <Grid item xs={12}>
-            <Typography variant="caption">
-              <PokemonTypeTag type={type}/> {effect}x
-            </Typography>
+            <PokemonTypeTag type={type}/>
+            <Typography variant="caption"> {effect}x</Typography>
           </Grid>
         )}
       </Grid>
       <Grid item container xs={12} sm={6} spacing={1} alignContent="flex-start">
         {notEffective.map(([type, effect]) =>
           <Grid item xs={12}>
-            <Typography variant="caption">
-              <PokemonTypeTag type={type}/> {effect}x
-            </Typography>
+            <PokemonTypeTag type={type}/>
+            <Typography variant="caption"> {effect}x</Typography>
           </Grid>
         )}
       </Grid>

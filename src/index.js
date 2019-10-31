@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.js';
+import { PageProvider } from './contexts/PageContext';
 import PokedexContext from './contexts/PokedexContext';
 import { SearchProvider } from './contexts/SearchContext';
 import TypesContext from './contexts/TypesContext';
@@ -11,9 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <PokedexContext.Provider value={data}>
       <TypesContext.Provider value={types}>
-        <SearchProvider>
-          <App/>
-        </SearchProvider>
+        <PageProvider>
+          <SearchProvider>
+            <App/>
+          </SearchProvider>
+        </PageProvider>
       </TypesContext.Provider>
     </PokedexContext.Provider>,
     document.getElementById('root')

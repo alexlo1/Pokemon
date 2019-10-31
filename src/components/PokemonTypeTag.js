@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 });
 
-const PokemonTypeTag = ({ type }) => {
+const PokemonTypeTag = ({ type, abbreviated }) => {
   const classes = useStyles({ type });
 
   return (
@@ -19,7 +19,7 @@ const PokemonTypeTag = ({ type }) => {
       className={classes.tag}
       variant="caption"
     >
-      {type.toUpperCase()}
+      {abbreviated ? type.toUpperCase().slice(0,3) : type.toUpperCase()}
     </Typography>
   );
 };
