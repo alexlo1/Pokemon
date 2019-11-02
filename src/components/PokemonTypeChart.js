@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import makeStyles from '@material-ui/styles/makeStyles';
-import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,7 +10,17 @@ import PokemonTypeTag from './PokemonTypeTag';
 import TypesContext from '../contexts/TypesContext';
 
 const useStyles = makeStyles({
+  attackCell: {
+    width: 80,
+    borderBottom: 'none',
+    textAlign: 'left',
+  },
+  autoWidth: {
+    margin: 'auto',
+    width: 'auto',
+  },
   cell: {
+    borderBottom: 'none',
     textAlign: 'center',
   },
   immune: {
@@ -79,34 +88,32 @@ const PokemonTypeChart = () => {
   const typeNames = Object.keys(typesData).sort();
 
   return (
-    <Paper>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell/>
-            {typeNames.map(type => (
+    <Table className={classes.autoWidth} size="small">
+      <TableHead>
+        <TableRow>
+          <TableCell className={classes.cell}/>
+          {typeNames.map(type => (
+            <TableCell className={classes.cell} padding="none">
+              <PokemonTypeTag type={type} abbreviated/>
+            </TableCell>
+          ))}
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {typeNames.map(attackType => (
+          <TableRow hover>
+            <TableCell className={classes.attackCell} padding="none">
+              <PokemonTypeTag type={attackType}/>
+            </TableCell>
+            {typeNames.map(defenseType => (
               <TableCell className={classes.cell} padding="none">
-                <PokemonTypeTag type={type} abbreviated/>
+                {effectivenessBox(typesData, attackType, defenseType)}
               </TableCell>
             ))}
           </TableRow>
-        </TableHead>
-        <TableBody>
-          {typeNames.map(attackType => (
-            <TableRow hover>
-              <TableCell padding="none">
-                <PokemonTypeTag type={attackType}/>
-              </TableCell>
-              {typeNames.map(defenseType => (
-                <TableCell className={classes.cell} padding="none">
-                  {effectivenessBox(typesData, attackType, defenseType)}
-                </TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </Paper>
+        ))}
+      </TableBody>
+    </Table>
   );
 };
 

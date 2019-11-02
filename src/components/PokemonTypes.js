@@ -14,7 +14,7 @@ const PokemonTypes = ({ types }) => {
   typesData[types.type1].half_damage_from.forEach(t => effectiveness[t] *= 0.5);
   typesData[types.type1].no_damage_from.forEach(t => effectiveness[t] = 0);
 
-  if (types.type2) {
+  if (types.type2 && types.type1 !== types.type2) {
     typesData[types.type2].double_damage_from.forEach(t => effectiveness[t] *= 2);
     typesData[types.type2].half_damage_from.forEach(t => effectiveness[t] *= 0.5);
     typesData[types.type2].no_damage_from.forEach(t => effectiveness[t] = 0);

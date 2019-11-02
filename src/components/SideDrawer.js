@@ -33,7 +33,7 @@ const SideDrawer = ({ open, onClose }) => {
         </ListItem>
         <ListItem button onClick={setPageTypeChart}>
           <ListItemIcon><CycleIcon/></ListItemIcon>
-          <ListItemText primary="Type Chart"/>
+          <ListItemText primary="Types"/>
         </ListItem>
       </List>
       <Divider/>
