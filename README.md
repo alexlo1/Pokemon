@@ -4,6 +4,7 @@ A front-end app to get information about the original 151 pokemon.
 
 ### Built With
 * [React](https://reactjs.org/)
+* [Preact Compat](https://preactjs.com/)
 * [Pokemon API](https://pokeapi.co/)
 * [Material-UI](https://material-ui.com/)
 * [Webpack](https://webpack.js.org/)

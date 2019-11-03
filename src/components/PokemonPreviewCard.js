@@ -45,8 +45,8 @@ const PokemonPreviewCard = ({ p, setCurrentPokemon }) => {
   const type1 = p.types.type1;
   const type2 = p.types.type2 || p.types.type1;
 
-  const background = `linear-gradient(135deg, ${TypeColors[type1]._} 50%, ${TypeColors[type2 || type1]._} 50%)`;
-  const lightBackground = `linear-gradient(135deg, ${TypeColors[type1].light} 50%, ${TypeColors[type2 || type1].light} 50%)`;
+  const background = `linear-gradient(135deg, ${TypeColors[type1]._} 50%, ${TypeColors[type2]._} 50%)`;
+  const lightBackground = `linear-gradient(135deg, ${TypeColors[type1].light} 50%, ${TypeColors[type2].light} 50%)`;
   
   const classes = useStyles({ background, lightBackground });
 

@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
-import MenuItem from '@material-ui/core/MenuItem';
-import NativeSelect from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
 import Typography from '@material-ui/core/Typography';
 import PokemonTypes from './PokemonTypes';
 import TypesContext from '../contexts/TypesContext';
@@ -20,6 +19,16 @@ const DualTypeCalculator = () => {
     setType2(e.target.value);
   };
 
+  const selectionOptions = () => (
+    <>
+      {typeNames.map(type => (
+        <option key={type} value={type}>
+          {type.charAt(0).toUpperCase() + type.slice(1)}
+        </option>
+      ))}
+    </>
+  );
+
   return (
     <Grid container spacing={1}>
       <Grid item xs={12}>
@@ -28,9 +37,7 @@ const DualTypeCalculator = () => {
           value={type1}
           onChange={handleChangeType1}
         >
-          {typeNames.map(type => (
-            <MenuItem value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</MenuItem>
-          ))}
+          {selectionOptions()}
         </NativeSelect>
       </Grid>
       <Grid item xs={12}>
@@ -39,9 +46,7 @@ const DualTypeCalculator = () => {
           value={type2}
           onChange={handleChangeType2}
         >
-          {typeNames.map(type => (
-            <MenuItem value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</MenuItem>
-          ))}
+          {selectionOptions()}
         </NativeSelect>
       </Grid>
       <Grid item xs={12}>

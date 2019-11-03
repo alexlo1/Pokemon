@@ -40,52 +40,38 @@ const useStyles = makeStyles({
   },
 });
 
-const superEffective = (typesData, attack, defense) => {
-  return typesData[defense].double_damage_from.includes(attack);
-};
-
-const notVeryEffective = (typesData, attack, defense) => {
-  return typesData[defense].half_damage_from.includes(attack);
-};
-
-const immune = (typesData, attack, defense) => {
-  return typesData[defense].no_damage_from.includes(attack);
-};
-
-const effectivenessBox = (typesData, attackType, defenseType) => {
-  const classes = useStyles();
-
-  if (superEffective(typesData, attackType, defenseType)) {
-    return (
-      <Typography className={classes.superEffective}>
-        2
-      </Typography>
-    );
-  }
-
-  if (notVeryEffective(typesData, attackType, defenseType)) {
-    return (
-      <Typography className={classes.notVeryEffective}>
-        0.5
-      </Typography>
-    );
-  }
-
-  if (immune(typesData, attackType, defenseType)) {
-    return (
-      <Typography className={classes.immune}>
-        0
-      </Typography>
-    );
-  }
-
-  return null;
-};
-
 const PokemonTypeChart = () => {
   const classes = useStyles();
   const typesData = useContext(TypesContext);
   const typeNames = Object.keys(typesData).sort();
+
+  const superEffective = (attack, defense) => {
+    return typesData[defense].double_damage_from.includes(attack);
+  };
+  
+  const notVeryEffective = (attack, defense) => {
+    return typesData[defense].half_damage_from.includes(attack);
+  };
+  
+  const immune = (attack, defense) => {
+    return typesData[defense].no_damage_from.includes(attack);
+  };
+
+  const effectivenessBox = (attackType, defenseType) => {  
+    if (superEffective(attackType, defenseType)) {
+      return <Typography className={classes.superEffective}>2</Typography>;
+    }
+  
+    if (notVeryEffective(attackType, defenseType)) {
+      return <Typography className={classes.notVeryEffective}>0.5</Typography>;
+    }
+  
+    if (immune(attackType, defenseType)) {
+      return <Typography className={classes.immune}>0</Typography>;
+    }
+
+    return null;
+  };
 
   return (
     <Table className={classes.autoWidth} size="small">
@@ -107,7 +93,7 @@ const PokemonTypeChart = () => {
             </TableCell>
             {typeNames.map(defenseType => (
               <TableCell className={classes.cell} padding="none">
-                {effectivenessBox(typesData, attackType, defenseType)}
+                {effectivenessBox(attackType, defenseType)}
               </TableCell>
             ))}
           </TableRow>

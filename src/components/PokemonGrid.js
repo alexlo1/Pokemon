@@ -50,7 +50,6 @@ const PokemonGrid = ({ currentPokemon, setCurrentPokemon }) => {
           md={currentPokemon ? 4 : 2}
         >
           <PokemonPreviewCard
-            key={p.name}
             p={p}
             setCurrentPokemon={setCurrentPokemon}
           />
