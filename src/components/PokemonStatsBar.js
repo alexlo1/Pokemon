@@ -23,7 +23,9 @@ const PokemonStatsBar = ({ statName, statValue, type }) => {
   return (
     <Grid item container xs={12}>
       <Grid item xs={12} sm="auto">
-        <Typography className={classes.stat}>{statName}: {statValue}</Typography>
+        <Typography className={classes.stat}>
+          {statName}: {statValue}
+        </Typography>
       </Grid>
       <Grid item xs={0} sm="auto">
         <div className={classes.statBar}/>

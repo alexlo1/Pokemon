@@ -58,7 +58,10 @@ const Content = () => {
           </Grid>
         }
       </Grid>
-      <Grid container className={classes.typesContainer} spacing={1}>
+      <Grid container
+        className={classes.typesContainer}
+        spacing={1}
+      >
         {pageString === 'types' &&
           <>
             <Hidden smDown>

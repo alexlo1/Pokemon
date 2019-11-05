@@ -79,8 +79,14 @@ const PokemonTypeChart = () => {
         <TableRow>
           <TableCell className={classes.cell}/>
           {typeNames.map(type => (
-            <TableCell className={classes.cell} padding="none">
-              <PokemonTypeTag type={type} abbreviated/>
+            <TableCell
+              className={classes.cell}
+              padding="none"
+            >
+              <PokemonTypeTag
+                type={type}
+                abbreviated
+              />
             </TableCell>
           ))}
         </TableRow>
@@ -88,11 +94,17 @@ const PokemonTypeChart = () => {
       <TableBody>
         {typeNames.map(attackType => (
           <TableRow hover>
-            <TableCell className={classes.attackCell} padding="none">
+            <TableCell
+              className={classes.attackCell}
+              padding="none"
+            >
               <PokemonTypeTag type={attackType}/>
             </TableCell>
             {typeNames.map(defenseType => (
-              <TableCell className={classes.cell} padding="none">
+              <TableCell
+                className={classes.cell}
+                padding="none"
+              >
                 {effectivenessBox(attackType, defenseType)}
               </TableCell>
             ))}

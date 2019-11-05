@@ -27,18 +27,24 @@ const SideDrawer = ({ open, onClose }) => {
   return (
     <Drawer open={open} onClose={onClose}>
       <List>
-        <ListItem button onClick={setPagePokedex}>
+        <ListItem button
+          onClick={setPagePokedex}
+        >
           <ListItemIcon><StatsIcon/></ListItemIcon>
           <ListItemText primary="Pokemon"/>
         </ListItem>
-        <ListItem button onClick={setPageTypeChart}>
+        <ListItem button
+          onClick={setPageTypeChart}
+        >
           <ListItemIcon><CycleIcon/></ListItemIcon>
           <ListItemText primary="Types"/>
         </ListItem>
       </List>
       <Divider/>
       <List>
-        <ListItem button onClick={() => window.location.href = Constants.githubURL}>
+        <ListItem button
+          onClick={() => window.location.href = Constants.githubURL}
+        >
           <ListItemIcon><InfoIcon/></ListItemIcon>
           <ListItemText primary="About"/>
         </ListItem>
