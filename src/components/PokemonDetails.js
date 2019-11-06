@@ -49,6 +49,9 @@ const PokemonDetails = ({ currentPokemon, handleClose }) => {
         <Grid item xs={12} sm="auto">
           <PokemonTypeTags types={p.types}/>
           <Typography className={classes.noWidth}>
+            {`#${p.id}`}
+          </Typography>
+          <Typography className={classes.noWidth}>
             {`Height: ${p.height / 10.0} m`}
           </Typography>
           <Typography className={classes.noWidth}>
